@@ -1,45 +1,14 @@
+<!DOCTYPE HTML>
 <html>
 <head>
-<script type="text/javascript"/>
-function onLoad()
-{
-document.addEventListener("deviceready",onDeviceReady,false);
-}
-function onDeviceReady()
-{
-alert("Device Ready!!");
-document.addEventListener("pause", onPause, false);
-document.addEventListener("resume", onResume, false);
-document.addEventListener("backbutton", onBackKeyDown, false);
-document.addEventListener("menubutton", onMenuKeyDown, false);
-document.addEventListener("volumedownbutton", onVolumeDownKeyDown, false);
-document.addEventListener("volumeupbutton", onVolumeUpKeyDown, false);
-}
-function onPause()
-{
-alert("pause Event Accured");
-}
-function onResume()
-{
-alert("Resume Event Accoured");
-}
-function onBackKeyDown()
-{
-alert("back button pressed");
-}
-function onMenuKeyDown()
-{
-alert("menubutton pressed");
-}
-function onVolumeDownKeyDown()
-{
-alert("Volume Down button pressed");
-}
-function onVolumeUpKeyDown()
-{
-alert("Volume Up button pressed");
-}
-</script>
+<title>PhoneGap</title>
+<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+<script type="text/javascript" charset="utf-8" src="mycode.js"></script>
 </head>
-<body onload="onLoad()"></body>
+<body onload="init();">
+    <h1>Hello World</h1>
+    <form>
+        <input type="button" value="Click me" onclick="msg()" />
+    </form>
+</body>
 </html>
