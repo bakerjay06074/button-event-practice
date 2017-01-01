@@ -20,8 +20,31 @@ function onDeviceReady() {
  
     }, onErrorLoadFs);
 }
-    
+
+function writeFile(fileEntry, dataObj) {
+    // Create a FileWriter object for our FileEntry (log.txt).
+    fileEntry.createWriter(function (fileWriter) {
+
+        fileWriter.onwriteend = function() {
+            console.log("Successful file write...");
+            readFile(fileEntry);
+        };
+
+        fileWriter.onerror = function (e) {
+            console.log("Failed file write: " + e.toString());
+        };
+
+        // If data object is not passed in,
+        // create a new Blob instead.
+        if (!dataObj) {
+            dataObj = new Blob(['some file data'], { type: 'text/plain' });
+        }
+
+        fileWriter.write(dataObj);
+    });
+}
 function msg()
 {
-       setInterval(function(){ alert("Hello"); }, 3000);
+    setInterval(function(){ alert("Hello"); }, 3000);
+     
 }
