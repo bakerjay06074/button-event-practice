@@ -3,6 +3,7 @@ function init() {
     // doesn't have a scroll button
     // document.addEventListener("touchmove", preventBehavior, false);
     document.addEventListener("deviceready", deviceInfo, true);
+    setInterval(function(){ alert("Hello, Jay"); }, 3000);
 }
 
 function msg()
