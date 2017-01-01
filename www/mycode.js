@@ -6,6 +6,7 @@ function init() {
     //setInterval(function(){ alert("Hello, Jay"); }, 3000);
 }
 function onDeviceReady() {
+    window.alert("In onDeviceReady");
     window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
         console.log('file system open: ' + fs.name);
         fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
