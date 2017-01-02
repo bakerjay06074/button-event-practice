@@ -1,3 +1,6 @@
+//declare database
+var db = null;
+
 function init() {
     // the next line makes it impossible to see Contacts on the HTC Evo since it
     // doesn't have a scroll button
@@ -7,43 +10,17 @@ function init() {
 }
 function onDeviceReady() {
     window.alert("In onDeviceReady");
-    window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-        console.log('file system open: ' + fs.name);
-        fs.root.getFile("newPersistentFile.txt", { create: true, exclusive: false }, function (fileEntry) {
- 
-            console.log("fileEntry is file?" + fileEntry.isFile.toString());
-            // fileEntry.name == 'someFile.txt' 
-            // fileEntry.fullPath == '/someFile.txt' 
-            writeFile(fileEntry, null);
- 
-        }, onErrorCreateFile);
- 
-    }, onErrorLoadFs);
-}
-
-function writeFile(fileEntry, dataObj) {
-    // Create a FileWriter object for our FileEntry (log.txt).
-    fileEntry.createWriter(function (fileWriter) {
-
-        fileWriter.onwriteend = function() {
-            console.log("Successful file write...");
-            readFile(fileEntry);
-        };
-
-        fileWriter.onerror = function (e) {
-            console.log("Failed file write: " + e.toString());
-        };
-
-        // If data object is not passed in,
-        // create a new Blob instead.
-        if (!dataObj) {
-            dataObj = new Blob(['some file data'], { type: 'text/plain' });
-        }
-
-        fileWriter.write(dataObj);
-    });
-}
-function msg()
+    
+    db = window.sqlitePlugin.openDatabase({name: 'test.db', location: 'default'});
+    db.transaction(function(tr) {
+        tr.executeSql("SELECT upper('Test string') AS upperString", [], function(tr, rs) {
+            alert('Got upperString result: ' + rs.rows.item(0).upperString);
+        });
+    }); 
+    
+}    
+    
+    function msg()
 {
     setInterval(function(){ alert("Hello"); }, 3000);
      
