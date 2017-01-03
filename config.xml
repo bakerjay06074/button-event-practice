@@ -16,5 +16,6 @@
   <author href="https://build.phonegap.com" email="detroiterinct@gmail.com">
       Jay Baker
   </author>
-<plugin name="cordova-plugin-file" spec="~4.3.1" />
+  <!-- <plugin name="cordova-plugin-file" spec="~4.3.1" /> -->
+   <plugin spec="https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free.git" source="git" /> 
 </widget>
