@@ -11,6 +11,7 @@ function init() {
 function onDeviceReady() {
     window.alert("In onDeviceReady");
     
+    // trial code for SQLite from https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free#sql-string-test
     db = window.sqlitePlugin.openDatabase({name: 'test.db', location: 'default'});
     db.transaction(function(tr) {
         tr.executeSql("SELECT upper('Test string') AS upperString", [], function(tr, rs) {
