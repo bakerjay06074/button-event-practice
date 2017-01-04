@@ -17,5 +17,6 @@
       Jay Baker
   </author>
   <!-- <plugin name="cordova-plugin-file" spec="~4.3.1" /> -->
-   <plugin spec="https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free.git" source="git" /> 
+  <!--Added following plugin for SQLite -->
+    <plugin spec="https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free.git" source="git" /> 
 </widget>
