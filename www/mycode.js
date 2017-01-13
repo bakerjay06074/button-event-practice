@@ -11,18 +11,20 @@ function init() {
 function onDeviceReady() {
     window.alert("In onDeviceReady");
     
-    // trial code for SQLite from https://github.com/litehelpers/Cordova-sqlite-evcore-extbuild-free#sql-string-test
-    db = window.sqlitePlugin.openDatabase({name: 'test.db', location: 'default'});
-    db.transaction(function(tr) {
-        tr.executeSql("SELECT upper('Test string') AS upperString", [], function(tr, rs) {
-            alert('Got upperString result: ' + rs.rows.item(0).upperString);
-        });
-    }); 
-    
-}    
-    
-    function msg()
-{
-    setInterval(function(){ alert("Hello"); }, 3000);
-     
 }
+
+function createFile() {
+  var type = LocalFileSystem.PERSISTENT;
+   var size = 0;
+   window.requestFileSystem(type, size, successCallback, errorCallback)
+   function successCallback(fs) {
+      fs.root.getFile('log.txt', {create: true, exclusive: true}, function(fileEntry) {
+         alert('File creation successfull!');
+      }, errorCallback);
+   }
+   function errorCallback(error) {
+      alert("ERROR: " + error.code)
+   }
+  
+	//alert("clicked create file");
+}    
