@@ -20,6 +20,7 @@ function createFile() {
    function successCallback(fs) {
       fs.root.getFile('log.txt', {create: true, exclusive: true}, function(fileEntry) {
          alert('File creation successfull!');
+	 writeFile(fileEntry,    
       }, errorCallback);
    }
    function errorCallback(error) {
@@ -28,3 +29,40 @@ function createFile() {
   
 	//alert("clicked create file");
 }    
+
+function writeFile(fileEntry, dataObj) {
+    // Create a FileWriter object for our FileEntry (log.txt). 
+    fileEntry.createWriter(function (fileWriter) {
+ 
+        fileWriter.onwriteend = function() {
+            console.log("Successful file write...");
+            readFile(fileEntry);
+        };
+ 
+        fileWriter.onerror = function (e) {
+            console.log("Failed file write: " + e.toString());
+        };
+ 
+        // If data object is not passed in, 
+        // create a new Blob instead. 
+        if (!dataObj) {
+            dataObj = new Blob(['some file data'], { type: 'text/plain' });
+        }
+ 
+        fileWriter.write(dataObj);
+    });
+}
+function readFile(fileEntry) {
+ 
+    fileEntry.file(function (file) {
+        var reader = new FileReader();
+ 
+        reader.onloadend = function() {
+            console.log("Successful file read: " + this.result);
+            displayFileData(fileEntry.fullPath + ": " + this.result);
+        };
+ 
+        reader.readAsText(file);
+ 
+    }, onErrorReadFile);
+}
