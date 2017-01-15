@@ -10,7 +10,7 @@ function init() {
 }
 function onDeviceReady() {
     window.alert("In onDeviceReady");
-    
+    console.log("In onDeviceReady");
 }
 
 function createFile() {
