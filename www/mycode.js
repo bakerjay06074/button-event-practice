@@ -20,7 +20,7 @@ function createFile() {
    function successCallback(fs) {
       fs.root.getFile('log.txt', {create: true, exclusive: true}, function(fileEntry) {
          alert('File creation successfull!');
-	 writeFile(fileEntry,    
+	 writeFile(fileEntry);    
       }, errorCallback);
    }
    function errorCallback(error) {
